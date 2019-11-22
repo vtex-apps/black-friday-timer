@@ -48,7 +48,7 @@ const BlackFridayTimer: StorefrontFunctionComponent = () => {
   return (
     <Fragment>
       <div className={`${styles.container2} flex flex-column pv6 ph4`}>
-        <Circles />
+        <Circles initialTime={timeLeft} />
       </div>
       <div className={`${styles.container} flex flex-column pv6 ph4`}>
         <p className={styles.days}>Our time is now.</p>
