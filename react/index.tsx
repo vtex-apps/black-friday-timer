@@ -15,7 +15,30 @@ const BlackFridayTimer: StorefrontFunctionComponent = () => {
 
   const timeLeft = blackFridayDate.getTime() - today.getTime()
 
-  const formatValue = (value: any) => {
+  let isPluralDays = true
+  let isPluralHours = true
+  let isPluralMinutes = true
+  let isPluralSeconds = true
+
+  const formatValueDays = (value: any) => {
+    isPluralDays = value !== 2
+    return `${value}`
+  }
+
+  const formatValueHours = (value: any) => {
+    isPluralHours = value !== 2
+    return `${value}`
+  }
+
+  const formatValueMinutes = (value: any) => {
+    isPluralMinutes = value !== 2
+    if (value < 10) {
+      return `0${value}`
+    }
+    return `${value}`
+  }
+  const formatValueSeconds = (value: any) => {
+    isPluralSeconds = value !== 2
     if (value < 10) {
       return `0${value}`
     }
@@ -28,28 +51,37 @@ const BlackFridayTimer: StorefrontFunctionComponent = () => {
         <Circles />
       </div>
       <div className={`${styles.container} flex flex-column pv6 ph4`}>
+        <p className={styles.days}>Our time is now.</p>
         <Timer
           initialTime={timeLeft}
           direction="backward"
-        >
-          {() => (
-            <React.Fragment>
-              <p className={styles.days}>Faltam <Timer.Days /> dias para a Black Friday.</p>
-            </React.Fragment>
-          )}
-        </Timer>
-        <Timer
-          initialTime={timeLeft}
-          direction="backward"
-          lastUnit="h"
         >
           {() => (
             <React.Fragment>
               <div className={styles.timer}>
-                <Timer.Hours />:<Timer.Minutes formatValue={formatValue} />:<Timer.Seconds formatValue={formatValue} />
+                <div className="flex flex-column items-center mh10" >
+                  <Timer.Days formatValue={formatValueDays} />
+                  <div className={styles.small}>{isPluralDays ? 'days' : 'day'}</div>
+                </div>
+                {'  '}
+                <div className="flex flex-column items-center mh4" >
+                  <Timer.Hours formatValue={formatValueHours} />
+                  <div className={styles.small}>{isPluralHours ? 'hours' : 'hour'}</div>
+                </div>
+                {' : '}
+                <div className="flex flex-column items-center mh4" >
+                  <Timer.Minutes formatValue={formatValueMinutes} />
+                  <div className={styles.small}>{isPluralMinutes ? 'minutes' : 'minute'}</div>
+                </div>
+                {' : '}
+                <div className="flex flex-column items-center mh4" >
+                  <Timer.Seconds formatValue={formatValueSeconds} />
+                  <div className={styles.small}>{isPluralSeconds ? 'seconds' : 'second'}</div>
+                </div>
               </div>
             </React.Fragment>
-          )}
+          )
+          }
         </Timer>
         <Logos />
       </div>
