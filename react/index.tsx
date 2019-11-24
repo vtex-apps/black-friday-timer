@@ -26,7 +26,7 @@ const BlackFridayTimer: StorefrontFunctionComponent = () => {
   }
 
   const formatValueHours = (value: any) => {
-    isPluralHours = value !== 2
+    isPluralHours = value !== 1
     return `${value}`
   }
 
@@ -59,7 +59,7 @@ const BlackFridayTimer: StorefrontFunctionComponent = () => {
           {() => (
             <React.Fragment>
               <div className={styles.timer}>
-                <div className="flex flex-column items-center mh10" >
+                <div className="flex flex-column items-center mh9" >
                   <Timer.Days formatValue={formatValueDays} />
                   <div className={styles.small}>{isPluralDays ? 'days' : 'day'}</div>
                 </div>
