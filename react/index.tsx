@@ -21,7 +21,7 @@ const BlackFridayTimer: StorefrontFunctionComponent = () => {
   let isPluralSeconds = true
 
   const formatValueDays = (value: any) => {
-    isPluralDays = value !== 2
+    isPluralDays = value !== 1
     return `${value}`
   }
 
